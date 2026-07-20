@@ -36,6 +36,7 @@
 #include <llvm/Support/ToolOutputFile.h>
 #include <llvm/Target/TargetMachine.h>
 
+#include "retdec/anchor_emitter/anchor_emitter.h"
 #include "retdec/ar-extractor/archive_wrapper.h"
 #include "retdec/ar-extractor/detection.h"
 #include "retdec/config/config.h"
@@ -953,7 +954,18 @@ int decompile(retdec::config::Config& config, ProgramOptions& po)
 
 	// Decompilation.
 	//
-	return retdec::decompile(config);
+	auto ret = retdec::decompile(config);
+
+	// Emit per-function retrieval anchors (<output>.anchors.json) alongside
+	// the existing .config.json artifact. Best-effort: a missing output path
+	// or unwritable file simply skips emission. See anchor_emitter/anchor_emitter.h.
+	//
+	retdec::anchor_emitter::emitAnchorFile(
+			config,
+			config.parameters.getOutputConfigFile()
+	);
+
+	return ret;
 }
 
 //

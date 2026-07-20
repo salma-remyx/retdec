@@ -1,3 +1,4 @@
+cond_add_subdirectory(anchor_emitter RETDEC_ENABLE_ANCHOR_EMITTER)
 cond_add_subdirectory(ar-extractor RETDEC_ENABLE_AR_EXTRACTOR)
 cond_add_subdirectory(ar-extractortool RETDEC_ENABLE_AR_EXTRACTORTOOL)
 cond_add_subdirectory(bin2llvmir RETDEC_ENABLE_BIN2LLVMIR)

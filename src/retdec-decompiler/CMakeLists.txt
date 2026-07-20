@@ -10,6 +10,7 @@ target_link_libraries(retdec-decompiler
 	retdec::macho-extractor
 	retdec::unpackertool
 	retdec::retdec
+	retdec::anchor_emitter
 )
 
 # Due to the implementation of the plugin system in LLVM, we have to link our
